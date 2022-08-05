@@ -61,13 +61,13 @@ function save($array){
     }else{
         $col=join("`,`",array_keys($array));
         $values=join("','",$array);
-        $sql="insert into $this->pdo (`{$col}`) values('{$values}')";
+        $sql="insert into $this->table (`{$col}`) values('{$values}')";
     }
     return $this->pdo->exec($sql);
 }
 // ------------------------------------------------------------------------------------------------------------------------------
 function del($id){
-    $sql="delect from $this->tabel WHERE" ;
+    $sql="delect from $this->table WHERE" ;
     if(is_array($id)){
         foreach($id as $key => $val){
             $tmp[]="`$key`='$val'";
@@ -95,4 +95,5 @@ function to($url){
     header("location:".$url);
 }
 // ------------------------------------------------------------------------------------------------------------------------------
+$Poster=new DB('poster');
 ?>
