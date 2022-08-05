@@ -30,11 +30,11 @@ if(isset($_SESSION['login'])){ // 選單應該要登入後才會顯示選單, �
 ?>
     
     <div class="ct a rb" style="position:relative; width:101.5%; left:-1%; padding:3px; top:-9px;"> 
-    <a href="?do=admin&redo=tit">網站標題管理</a>| 
-    <a href="?do=admin&redo=go">動態文字管理</a>| 
-    <a href="?do=admin&redo=rr">預告片海報管理</a>| 
-    <a href="?do=admin&redo=vv">院線片管理</a>| 
-    <a href="?do=admin&redo=order">電影訂票管理</a> 
+    <a href="?do=tit">網站標題管理</a>| 
+    <a href="?do=go">動態文字管理</a>| 
+    <a href="?do=poster">預告片海報管理</a>| 
+    <a href="?do=movie">院線片管理</a>| 
+    <a href="?do=order">電影訂票管理</a> 
   </div>
   <!-- --------------------------------------- -->
   <?php
@@ -50,9 +50,9 @@ if(isset($_SESSION['login'])){ // 選單應該要登入後才會顯示選單, �
   include "./back/login.php";
 } // *尾
   ?>
-    <div class="rb tab">
+    <!-- <div class="rb tab">
       <h2 class="ct">請選擇所需功能</h2>
-    </div>
+    </div> -->
   </div>
   <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
 </div>
