@@ -1,3 +1,4 @@
+<?php include_once "base.php"; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0055)?do=admin -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -24,6 +25,10 @@
     </marquee>
   </div>
   <div id="mm">
+<?php
+if(isset($_SESSION['login'])){ // 選單應該要登入後才會顯示選單, 這裡用SESSION判斷有無登入 *頭
+?>
+    
     <div class="ct a rb" style="position:relative; width:101.5%; left:-1%; padding:3px; top:-9px;"> 
     <a href="?do=admin&redo=tit">網站標題管理</a>| 
     <a href="?do=admin&redo=go">動態文字管理</a>| 
@@ -40,7 +45,10 @@
   }else{
     include "./back/main.php"; // 當被輸入不存在的do參數, 載入該頁面
   }
-  
+
+}else{
+  include "./back/login.php";
+} // *尾
   ?>
     <div class="rb tab">
       <h2 class="ct">請選擇所需功能</h2>
