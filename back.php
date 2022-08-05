@@ -31,6 +31,17 @@
     <a href="?do=admin&redo=vv">院線片管理</a>| 
     <a href="?do=admin&redo=order">電影訂票管理</a> 
   </div>
+  <!-- --------------------------------------- -->
+  <?php
+  $do=$_GET['do']??'main';
+  $file='./back/'.$do.".php";
+  if(file_exists($file)){
+    include $file;
+  }else{
+    include "./back/main.php"; // 當被輸入不存在的do參數, 載入該頁面
+  }
+  
+  ?>
     <div class="rb tab">
       <h2 class="ct">請選擇所需功能</h2>
     </div>

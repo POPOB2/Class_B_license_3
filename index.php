@@ -23,29 +23,19 @@
     ABC影城票價全面八折優惠1個月
     </marquee>
   </div>
-  <div id="mm">
-    <div class="half" style="vertical-align:top;">
-      <h1>預告片介紹</h1>
-      <div class="rb tab" style="width:95%;">
-        <div id="abgne-block-20111227">
-          <ul class="lists">
-          </ul>
-          <ul class="controls">
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="half">
-      <h1>院線片清單</h1>
-      <div class="rb tab" style="width:95%;">
-        <table>
-          <tbody>
-            <tr> </tr>
-          </tbody>
-        </table>
-        <div class="ct"> </div>
-      </div>
-    </div>
+
+  <!-- 載入頁面的地方, 切出去到front/main.php 方便讓這個區塊可以用do帶值載入其他頁面 -->
+  <div id="mm"> 
+  <?php
+  $do=$_GET['do']??'main';
+  $file='./front/'.$do.".php";
+  if(file_exists($file)){
+    include $file;
+  }else{
+    include "./front/main.php"; // 當被輸入不存在的do參數, 載入該頁面
+  }
+  
+  ?>
   </div>
   <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
 </div>
