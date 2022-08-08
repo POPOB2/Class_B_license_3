@@ -20,8 +20,8 @@ $_POST['rank']=$Movie->math('max','id')+1; // POST的[rank] 為 DB計算 最大 
 
 $Movie->save($_POST);
 
-// to("../back.php?do=movie");
+to("../back.php?do=movie");
 
-dd($_POST);
+// dd($_POST);
 
 ?>

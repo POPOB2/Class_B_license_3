@@ -98,4 +98,11 @@ function to($url){
 $Poster=new DB('poster');
 // 8/8-11:25 ~ 11:55
 $Movie=new DB('movie');
+// 8/8-13:41 ~ 13:56
+$Level=[// 全域變數, 該陣列用於back/movie.php顯示 分級 的圖示
+    '普遍級'=>'03C01.png',
+    '輔導級'=>'03C02.png',
+    '保護級'=>'03C03.png',
+    '限制級'=>'03C04.png'
+];
 ?>
