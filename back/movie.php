@@ -6,6 +6,8 @@
 <?php
 $rows=$Movie->all(" order by rank"); // 查詢全部(排序)
 foreach($rows as $key => $row){ // 因為有排序所以用foreach
+    $prev=(isset($rows[$key-1]))?$rows[$key-1]['id']:$row['id'];
+    $next=(isset($rows[$key+1]))?$rows[$key+1]['id']:$row['id'];
 ?>
     <div style="background:#eee; width:99%; height:140px; margin:2px 0; display:flex;">
         <div style="width:15%">
@@ -20,8 +22,9 @@ foreach($rows as $key => $row){ // 因為有排序所以用foreach
                 <div style="width:33.33%">片長:<?=$row['length'];?></div>
                 <div style="width:33.33%">上映時間:<?=$row['ondate'];?></div>
             </div>
+
             <div>
-                <button onclick="show(<?=$row['id'];?>)"><?=($row['sh']==1)?'顯示':'隱藏';?></button>
+                <button onclick="show(<?=$row['id'];?>)"><?=($row['sh']==1)?'顯示':'隱藏';?></button> <!--按鍵無反應, 未找到原因 -->
                 <button onclick="sw('movie',[<?=$row['id'];?>,<?=$prev;?>])">往上</button>
                 <button onclick="sw('movie',[<?=$row['id'];?>,<?=$next;?>])">往下</button>
                 <button onclick="location.href='?do=edit_movie&id=<?=$row['id'];?>'">編輯電影</button>
@@ -36,6 +39,21 @@ foreach($rows as $key => $row){ // 因為有排序所以用foreach
 }
 ?>
 </div>
+<!-- 8/8-14:17 ~ 14:53 -->
 <script>
-
+    function sw(table,id){
+        $.post("./api/switch.php",{table,id},()=>{
+            location.reload();
+        })
+    }
+    function sw(table,id){
+        $.post("./api/del.php",{table,id},()=>{
+            location.reload();
+        })
+    }
+    function show(id){
+        $.post("./api/show.php",{id},()=>{
+            location.reload();
+        })
+    }
 </script>
