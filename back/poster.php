@@ -44,15 +44,16 @@
 </form>
 
 
-
-
-
-
-
-
-
 </div>
-
+<!-- 8/8-10:12 ~ 10:31 -->
+<script>
+    $(".btn").on("click",function(){
+        let id=$(this).data('id').split("-") // id為 $(按下的東西)  的資料(找該資料'id')  分裂(將指定符號作為分界點將所有內容做成陣列)
+        $.post("./api/switch.php",{table:'poster',id},()=>{ // post傳送到(該路徑, {資料表為:'poster',的id欄},箭頭函式)
+            location.reload(); // js的自動重整頁面
+        })
+    })
+</script>
 
 
 
