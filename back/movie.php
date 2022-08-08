@@ -1,7 +1,7 @@
 <!-- 8/8-10:45 ~ 11:18 -->
 <button onclick="location.href='?do=add_movie'">新增電影</button>
 <hr>
-<!-- 8/8-13:03 ~ 13:32 --> + <!-- 8/8-13:41 ~ 13:56 -->
+<!-- 8/8-13:03 ~ 13:32 + 13:41 ~ 13:56 + 14:00 ~ 14:12 -->
 <div style="overflow:scroll; height:430px;">
 <?php
 $rows=$Movie->all(" order by rank"); // 查詢全部(排序)
@@ -21,14 +21,14 @@ foreach($rows as $key => $row){ // 因為有排序所以用foreach
                 <div style="width:33.33%">上映時間:<?=$row['ondate'];?></div>
             </div>
             <div>
-                <button>顯示</button>
-                <button>往上</button>
-                <button>往下</button>
-                <button>編輯電影</button>
-                <button>刪除電影</button>
+                <button onclick="show(<?=$row['id'];?>)"><?=($row['sh']==1)?'顯示':'隱藏';?></button>
+                <button onclick="sw('movie',[<?=$row['id'];?>,<?=$prev;?>])">往上</button>
+                <button onclick="sw('movie',[<?=$row['id'];?>,<?=$next;?>])">往下</button>
+                <button onclick="location.href='?do=edit_movie&id=<?=$row['id'];?>'">編輯電影</button>
+                <button onclick="del('movie',<?=$row['id'];?>)">刪除電影</button> <!-- 刪除movie表,的$row獲取的id -->
             </div>
             <div>
-                劇情介紹
+                劇情介紹:<?=$row['intro'];?>
             </div>
         </div>
     </div>
@@ -36,7 +36,6 @@ foreach($rows as $key => $row){ // 因為有排序所以用foreach
 }
 ?>
 </div>
-
 <script>
 
 </script>
