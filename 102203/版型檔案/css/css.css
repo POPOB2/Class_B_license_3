@@ -4,7 +4,6 @@ body
 {
 	background:url(../icon/b.png);
 	font-family:微軟正黑體;
-	font-family:微軟正黑體;
 }
 select,select option
 {
@@ -23,20 +22,14 @@ input[type='text'],input[type='file'],input[type='password'],textarea,.button
 }
 input[type='button'],input[type='submit'],input[type='reset'],button,.button
 {
-	/* <!-- 8/8-13:03 ~ 13:32 --> */
-	/* min-width:70px; */
-	/* min-height:40px; */
+	min-width:70px;
+	min-height:40px;
 	background:#000;
 	color:#fff;
 	border:none;
 	cursor:pointer;
-	/* font-size:18px; */
-	font-size:14px;
+	font-size:18px;
 	text-decoration:none;
-	/* 新增 */
-	padding:3px 8px;
-	border-radius:6px;
-	margin:0 3px;
 }
 input[type='button']:hover,input[type='submit']:hover,input[type='reset']:hover,button:hover,.button:hover
 {
@@ -128,9 +121,9 @@ input:focus
 }
 .half
 {
-	width:49%;
+	width:45%;
 	display:inline-block;
-	/* padding:2%; */
+	padding:2%;
 }
 .rb
 {

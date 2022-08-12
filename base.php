@@ -46,9 +46,26 @@ function find($id){
     return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 }
 // ------------------------------------------------------------------------------------------------------------------------------
-function math($math,$col,...$arg){
-    $sql="select $math($col) from $this->table";
+function math($math,$col,...$arg)
+{
+    $sql="select $math($col) from $this->table ";
+    if(isset($arg[0])){
+        if(is_array($arg[0])){
+            foreach($arg[0] as $key => $val){
+                $tmp[]="`$key`='$val'";
+            }
+            //$sql = $sql . " where " . join(" && ",$tmp);
+            $sql .= " where " . join(" && ",$tmp);
+        }else{
+            // $sql=$sql . $arg[0];
+            $sql .= $arg[0];
+        }
+    }
 
+    if(isset($arg[1])){
+        $sql .= $arg[1];
+    }
+    //echo $sql;
     return $this->pdo->query($sql)->fetchColumn();
 }
 // ------------------------------------------------------------------------------------------------------------------------------
@@ -101,7 +118,8 @@ $Poster=new DB('poster');
 // 8/8-11:25 ~ 11:55
 $Movie=new DB('movie');
 // 8/8-13:41 ~ 13:56
-$Level=[// 全域變數, 該陣列用於back/movie.php顯示 分級 的圖示
+// 全域變數, 該陣列用於back/movie.php顯示 分級 的圖示
+$Level=[
     '普遍級'=>'03C01.png',
     '輔導級'=>'03C02.png',
     '保護級'=>'03C03.png',
