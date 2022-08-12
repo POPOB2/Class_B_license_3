@@ -1,5 +1,12 @@
-<!-- 8/12-10:30 ~ 10:46 -->
-<div class="ct">訂單清單</div>
+<!-- 8/12-10:30 ~ 10:46 + 10:57 ~ 11:20 -->
+<h3 class="ct">訂單清單</h3>
+<style>
+    .header div,.row > div{
+        /* width: 14%; */
+        width:calc(100% / 7);
+        text-align: center;
+    }
+</style>
 <div class="header" style="display:flex; width:100%">
     <div>訂單編號</div>
     <div>電影名稱</div>
@@ -14,13 +21,22 @@
     $orders=$Order->all(' order by `no` desc'); // 撈出Order全部
     foreach($orders as $ord){
     ?>
-    <div style="display:flex">
+    <div class="row" style="display:flex">
         <div><?=$ord['no'];?></div>
         <div><?=$ord['movie'];?></div>
         <div><?=$ord['date'];?></div>
         <div><?=$ord['session'];?></div>
         <div><?=$ord['qt'];?></div>
-        <div><?=$ord['seats'];?></div>
+        <div><?php
+            $seats=unserialize($ord['seats']);
+            sort($seats); // sort(只會有true||false) 不須有回傳參數 船進去直接有 回傳的內容
+            foreach($seats as $seat){
+                echo (floor(($seat/5))+1). "排"; // 使用無條件捨去, 因為012345號時 0/5=0+1為1, 1/5=1.2若使用進位再+1為3, 這樣變成 012345=>13XXX而非123456
+                echo (($seat%5)+1). "號"; // 注意框號的使用 若計算的部分沒有加最外圈的(), 程式會以為是$seat%5的結果, 1+號
+                echo "<br>";
+            }
+        ?></div>
+        
         <div>
             <button onclick="del('orders',<?=$ord['id'];?>)">刪除</button>
         </div>
