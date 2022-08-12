@@ -1,4 +1,7 @@
-<!-- 8/12-10:30 ~ 10:46 + 10:57 ~ 11:20 + 11:26 ~ 11:38 -->
+<!-- 8/12-10:30 ~ 10:46 + 
+          10:57 ~ 11:20 + 
+          11:26 ~ 11:38 + 
+          11:43 ~ 12:00 -->
 <h3 class="ct">訂單清單</h3>
 
 
@@ -44,7 +47,7 @@
     $orders=$Order->all(' order by `no` desc'); // 撈出Order全部
     foreach($orders as $ord){
     ?>
-    <div class="row" style="display:flex">
+    <div class="row" style="display:flex; align-items:center">
         <div><?=$ord['no'];?></div>
         <div><?=$ord['movie'];?></div>
         <div><?=$ord['date'];?></div>
@@ -59,7 +62,8 @@
                 echo "<br>";
             }
         ?></div>
-        
+
+
         <div>
             <button onclick="del('orders',<?=$ord['id'];?>)">刪除</button>
         </div>
@@ -76,5 +80,27 @@
         $.post('./api/del.php',{table,id},()=>{
             location.reload();
         })
+    }
+
+
+    function qDel(){
+        let type=$("input[name='type']:checked").val();
+        let target;
+        switch(type){
+            case "date":
+                target=$("input[name='date']").val();
+            break;
+            case 'movie':
+                target=$("select[name='movie']").val();
+            break;
+        }
+        // confirm==一串文字 確定 或取消
+        let con=confirm("你確定要刪除全部"+target+"的資料嗎?");
+
+        if(con){
+            $.post("./api/q_del.php",{type,target},()=>{
+                location.reload();
+            })
+        }
     }
 </script>
