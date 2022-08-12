@@ -46,7 +46,7 @@ foreach($rows as $key => $row){ // 因為有排序所以用foreach
             location.reload();
         })
     }
-    function sw(table,id){
+    function del(table,id){ 
         $.post("./api/del.php",{table,id},()=>{
             location.reload();
         })
