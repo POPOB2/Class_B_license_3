@@ -12,7 +12,7 @@
 <div style="overflow:auto; height:450px">
     <?php
     $orders=$Order->all(' order by `no` desc'); // 撈出Order全部
-    foreach($order as $ord){
+    foreach($orders as $ord){
     ?>
     <div style="display:flex">
         <div><?=$ord['no'];?></div>
@@ -22,7 +22,7 @@
         <div><?=$ord['qt'];?></div>
         <div><?=$ord['seats'];?></div>
         <div>
-            <button onclick="del('order',<?=$ord['id'];?>)">刪除</button>
+            <button onclick="del('orders',<?=$ord['id'];?>)">刪除</button>
         </div>
     </div>
     <hr>
@@ -33,7 +33,7 @@
 
 <script>
         function del(table,id){ 
-        $.post("./api/del.php",{table,id},()=>{
+        $.post('./api/del.php',{table,id},()=>{
             location.reload();
         })
     }

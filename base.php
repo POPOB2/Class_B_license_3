@@ -67,14 +67,14 @@ function save($array){
 }
 // ------------------------------------------------------------------------------------------------------------------------------
 function del($id){
-    $sql="delect from $this->table WHERE" ;
+    $sql="delete from $this->table WHERE " ;
     if(is_array($id)){
         foreach($id as $key => $val){
             $tmp[]="`$key`='$val'";
         }
-        $sql.=join(" && ",$tmp);
+        $sql.= join(" && ",$tmp);
     }else{
-        $sql.="`id`='$id'";
+        $sql.=" `id`='$id'";
     }
     return $this->pdo->exec($sql);
 }
