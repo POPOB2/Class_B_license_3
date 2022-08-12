@@ -11,7 +11,7 @@
 </div>
 <div style="overflow:auto; height:450px">
     <?php
-    $orders=$Order->all(); // 撈出Order全部
+    $orders=$Order->all(' order by `no` desc'); // 撈出Order全部
     foreach($order as $ord){
     ?>
     <div style="display:flex">
